@@ -1,0 +1,143 @@
+@import "../font-awesome/scss/font-awesome";
+@import "./transition";
+@import "./map";
+
+@import "./variables";
+
+html, body {
+  margin: 0;
+  height: 100%;
+  font-family: "Microsoft YaHei UI";
+}
+
+.content {
+  position: absolute;
+  top: 41px;
+  bottom: 50px;
+  overflow-y: auto;
+  width: 100%;
+  background-color: white;
+}
+
+ul.primary-list {
+  padding: 0px;
+  font-size: 14px;
+  margin: 0px;
+  li {
+    list-style: none;
+    padding: 5px 10px;
+    font-family: "Microsoft YaHei UI";
+    a {
+      text-decoration: none;
+      color: #000;
+      border-bottom: 1px solid $basic-border-color;
+      display: block;
+      padding: 4px 0px 10px 8px;
+      line-height: 30px;
+      .contact {
+        float: right;
+      }
+    }
+  }
+  li:last-child {
+    a {
+      border-bottom: none;
+    }
+  }
+  border-bottom: 1px solid $basic-border-color;
+}
+
+form {
+  input {
+    margin: 10px 2px 0px 2px;
+  }
+}
+
+header {
+  font-family: "Microsoft YaHei";
+  width: 100%;
+  z-index: $layout-A;
+
+  .header-bar {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-weight: 600;
+    border-bottom: 1px solid $basic-border-color;
+    margin: 0px;
+    font-size: 16px;
+    i {
+      font-size: 18px;
+    }
+    .left {
+      width: 30px;
+      position: absolute;
+      left: 0px;
+      top: 3px;
+    }
+    .right {
+      width: 30px;
+      position: absolute;
+      right: 0px;
+    }
+
+    .topic {
+      width: 100%;
+    }
+
+    .toggle-pop-up {
+      width: 100%;
+
+      i {
+        transition: transform 0.4s,
+        color 0.4s;
+
+        &.pop-up-open {
+          transform: rotate(45deg);
+          color: $highlight;
+        }
+      }
+    }
+  }
+}
+
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  z-index:$layout-A;
+
+  .footer-nav {
+    height: 49px;
+    border-top: 1px solid $basic-border-color;
+    background-color: white;
+    font-size: 0px;
+
+    span {
+      display: inline-block;
+      height: 100%;
+      width: 50%;
+      font-size: 14px;
+      color: $disable-color;
+      i {
+
+        text-align: center;
+        margin: 5px auto 0px auto;
+        width: 100%;
+        display: block;
+      }
+      p {
+        text-align: center;
+        font-size: 12px;
+        width: 100%;
+        margin: 0px auto;
+        display: block;
+      }
+
+      &.highlight {
+        color: $highlight;
+      }
+    }
+  }
+}

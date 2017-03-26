@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vehicle ref</title>
+</head>
+<body>
+<div id="app">
+    <header>
+        <header-bar @toggle-popup="popup = !popup" :popup="popup"></header-bar>
+    </header>
+    <transition :name="stateTransition">
+        <router-view class="content"></router-view>
+    </transition>
+    <footer>
+        <transition name="slide-down">
+            <footer-nav v-show="!$route.meta.view || $route.meta.view.footerNav != false"></footer-nav>
+        </transition>
+    </footer>
+    <transition name="fade">
+        <pop-up-box v-if="popup" @toggle-popup="popup = !popup" :popup="popup"></pop-up-box>
+    </transition>
+</div>
+<script src="https://api.map.baidu.com/api?v=2.0&ak=nLcg543nSxxibj5V0dwU02Dl&s=1"></script>
+<script src="bundle.js"></script>
+</body>
+</html>

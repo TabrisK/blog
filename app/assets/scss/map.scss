@@ -1,0 +1,8 @@
+.mapBg {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  & > div {
+    height: 100%;
+  }
+}

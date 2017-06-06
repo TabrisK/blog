@@ -20,3 +20,14 @@
         }
     }
 </script>
+<style lang="scss" rel="stylesheet/scss">
+    @import "~scss/variables.scss";
+    .mapBg {
+        height: 100%;
+        position: absolute;
+        width: 100%;
+    & > div {
+            height: 100%;
+        }
+    }
+</style>

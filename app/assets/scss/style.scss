@@ -1,8 +1,8 @@
 @import "../font-awesome/scss/font-awesome";
 @import "./transition";
-@import "./map";
-
 @import "./variables";
+@import "./device-pc";
+@import "./device-phone";
 
 html, body {
   margin: 0;
@@ -10,13 +10,15 @@ html, body {
   font-family: "Microsoft YaHei UI";
 }
 
-.content {
-  position: absolute;
+.bg {
   top: 41px;
   bottom: 50px;
   overflow-y: auto;
-  width: 100%;
   background-color: white;
+  .content {
+    max-width: 768px;
+    margin: 0px auto;
+  }
 }
 
 ul.primary-list {
@@ -44,7 +46,7 @@ ul.primary-list {
       border-bottom: none;
     }
   }
-  border-bottom: 1px solid $basic-border-color;
+  //border-bottom: 1px solid $basic-border-color;
 }
 
 form {
@@ -57,47 +59,68 @@ header {
   font-family: "Microsoft YaHei";
   width: 100%;
   z-index: $layout-A;
-
-  .header-bar {
-    width: 100%;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    font-weight: 600;
+  .bg{
     border-bottom: 1px solid $basic-border-color;
-    margin: 0px;
-    font-size: 16px;
-    i {
-      font-size: 18px;
-    }
-    .left {
-      width: 30px;
-      position: absolute;
-      left: 0px;
-      top: 3px;
-    }
-    .right {
-      width: 30px;
-      position: absolute;
-      right: 0px;
-    }
-
-    .topic {
-      width: 100%;
-    }
-
-    .toggle-pop-up {
-      width: 100%;
-
+    .header-bar {
+      max-width: 768px;
+      height: 40px;
+      line-height: 40px;
+      font-weight: 600;
+      margin: 0px auto;
+      font-size: 28px;
       i {
-        transition: transform 0.4s,
-        color 0.4s;
-
-        &.pop-up-open {
-          transform: rotate(45deg);
-          color: $highlight;
+        font-size: 18px;
+      }
+      .left {
+        width: 30px;
+        position: absolute;
+        left: 0px;
+        top: 3px;
+      }
+      .right {
+        float: right;
+        input{
+          text-align: center;
         }
       }
+
+      .topic {
+        width: 100%;
+      }
+
+      .toggle-pop-up {
+        width: 100%;
+
+        i {
+          transition: transform 0.4s,
+          color 0.4s;
+
+          &.pop-up-open {
+            transform: rotate(45deg);
+            color: $highlight;
+          }
+        }
+      }
+    }
+  }
+}
+
+.nav-bar{
+  max-width: 768px;
+  height: 32px;
+  line-height: 32px;
+  font-weight: 600;
+  margin: 0px auto;
+  font-size: 0;
+  a{
+    width:25%;
+    font-size: 22px;
+    display: inline-block;
+    text-align: center;
+    color: lightgray;
+    text-decoration: none;
+    &.active{
+      color: black;
     }
   }
 }
@@ -106,7 +129,7 @@ footer {
   width: 100%;
   position: absolute;
   bottom: 0px;
-  z-index:$layout-A;
+  z-index: $layout-A;
 
   .footer-nav {
     height: 49px;

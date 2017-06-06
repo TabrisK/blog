@@ -7,24 +7,20 @@ require('file-loader!./index.html');
 
 require('vue-resource');
 import '!style-loader!css-loader!sass-loader!./assets/scss/style.scss';
-import Plugins from './directives/plugins';
 import Vue from 'vue';
 import _ from 'lodash';
 import VueRouter from 'vue-router';
 import VueResource from 'vue-resource';
 import vRouter from './router';
-import topNav from './components/footer-nav.component.vue';
-import headerBar from './components/header-bar.component.vue';
-import popUpBox from './components/pop-up-box.vue';
+//自定义组件、模块、指令
+import Plugins from './directives/plugins';
+import Views from './components/view/views';
+
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Plugins);
-
-Vue.component(
-    'baidu-map',
-    () => System.import('./components/baidu-map.component.vue')
-);
+Vue.use(Views);
 
 vRouter.beforeEach((to, from, next) => {
     next();
@@ -68,9 +64,5 @@ var app = new Vue({
     methods: {},
     computed: {},
     router: vRouter,
-    components: {
-        "footer-nav": topNav,
-        "header-bar": headerBar,
-        "pop-up-box": popUpBox
-    }
+    components: {}
 });

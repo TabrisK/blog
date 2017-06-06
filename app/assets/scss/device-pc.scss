@@ -1,0 +1,19 @@
+@media screen and (min-width: 769px) {
+  header {
+    .header-bar {
+      .left {
+      }
+      .right {
+        input{
+          width: 180px;
+          line-height: 20px;
+          text-align: center;
+          display: block;
+          margin-top: 7px;
+          font-size: 16px;
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}

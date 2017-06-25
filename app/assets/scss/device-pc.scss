@@ -4,7 +4,7 @@
       .left {
       }
       .right {
-        input{
+        input {
           width: 180px;
           line-height: 20px;
           text-align: center;
@@ -15,5 +15,63 @@
         }
       }
     }
+  }
+
+  ul.primary-list {
+    padding: 0px;
+    font-size: 14px;
+    margin: 0px;
+    li {
+      list-style: none;
+      padding: 5px 10px;
+      font-family: "Microsoft YaHei UI";
+      a {
+        text-decoration: none;
+        color: #000;
+        border-bottom: 1px solid $basic-border-color;
+        display: flex;
+        flex-direction:column;
+        padding: 4px 0px 10px 8px;
+        line-height: 30px;
+        width: 100%;
+        .info{
+          color: #546e7a;
+          padding-bottom: 5px;
+          width:100%;
+          span{
+            &:before{
+              content: '―';
+              margin-left: 4px;
+              margin-right: 5px;
+            }
+          }
+        }
+        .outline{
+          display: flex;
+          flex-direction:row;
+          .cover {
+            display: inline-block;
+            margin: 0px;
+            margin-right: 5%;
+            width: auto;
+            max-width: 120px;
+            img {
+              max-width: 100%;
+              outline: 1px solid gray;
+            }
+          }
+          .ref {
+            display: inline-block;
+            flex: 1 1 auto;
+          }
+        }
+      }
+    }
+    li:last-child {
+      a {
+        border-bottom: none;
+      }
+    }
+    //border-bottom: 1px solid $basic-border-color;
   }
 }

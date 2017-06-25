@@ -5,7 +5,6 @@
 
 require('file-loader!./index.html');
 
-require('vue-resource');
 import '!style-loader!css-loader!sass-loader!./assets/scss/style.scss';
 import Vue from 'vue';
 import _ from 'lodash';
@@ -15,23 +14,25 @@ import vRouter from './router';
 //自定义组件、模块、指令
 import Plugins from './directives/plugins';
 import Views from './components/view/views';
-
+import Filters from './filters';
 
 Vue.use(VueRouter);
 Vue.use(VueResource);
 Vue.use(Plugins);
 Vue.use(Views);
+Vue.use(Filters);
 
 vRouter.beforeEach((to, from, next) => {
+    console.log(this);
     next();
 });
 
 vRouter.afterEach((to, from) => {
     (function (to) {
-        window.setTimeout(()=> {
+        window.setTimeout(() => {
             var z = 0;
-            to.path.split("").map((val, key)=> {
-                if (val == "/")z++
+            to.path.split("").map((val, key) => {
+                if (val == "/") z++
             });
             let newContent = _.last(document.getElementsByClassName("content"));
             newContent.style.zIndex = z;//根据path中/的数量决定z-index;
@@ -39,7 +40,7 @@ vRouter.afterEach((to, from) => {
     })(to);
 });
 
-var app = new Vue({
+let app = new Vue({
     el: "#app",
     watch: {
         '$route' (to, from) {
@@ -55,6 +56,7 @@ var app = new Vue({
                 else//定义了左右滑动关系
                     this.stateTransition = to.meta.xIndex < from.meta.xIndex ? 'slide-right-concat' : 'slide-left-concat';
             }
+            this.$router.previous = from;
         }
     },
     data: {

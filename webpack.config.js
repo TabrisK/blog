@@ -6,7 +6,7 @@ var path = require("path");
 var copyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-    entry: "./app/app.js",
+    entry: ["babel-polyfill", "./app/app.js"],
     devtool: "eval-source-map",
     output: {
         filename: "bundle.js",

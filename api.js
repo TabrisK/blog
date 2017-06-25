@@ -8,11 +8,19 @@ module.exports = api;
 function api(app) {
     app.use(bodyParser.json()); // for parsing application/json
     app.get("/api/vehicles", function (req, res) {
-        res.send(vehicleInfo);
+        res.send();
     });
 
-    app.get("/api/vehicle/:id", function (req, res) {
-        res.send(vehicleInfo);
+    app.get("/api/article/page/:page/size/:size", function (req, res) {
+        res.send([{
+            id: 1,
+            title: "建站讣告",
+            img: "assets/img/logo.png",
+            brief: "HELEX的造作成立啦！",
+            createTime: 1496825314081,
+            updateTime: 1496825314081,
+            category: "通知"
+        }]);
     });
 
     app.post("/api/vehicles", function (req, res) {

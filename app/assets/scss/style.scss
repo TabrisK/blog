@@ -7,7 +7,7 @@
 html, body {
   margin: 0;
   height: 100%;
-  font-family: "Microsoft YaHei UI";
+  font-family: "Microsoft YaHei UI, arial";
 }
 
 .bg {
@@ -28,7 +28,6 @@ form {
 }
 
 header {
-  font-family: "Microsoft YaHei";
   width: 100%;
   z-index: $layout-A;
   .bg {

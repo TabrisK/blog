@@ -31,9 +31,14 @@
         },
         methods: {
             async getArticleList(page, size){
-                let res = await article.getList({page: page || 1, size: size || 20});
+                let res = await article.getList({},{page: page || 1, size: size || 20});
                 console.log(res.data);
-                this.list = this.list.concat(res.data);
+                for(let item of res.data){
+                    this.$http.get(item.contenturl).then(response => {
+                        console.log(response);
+                    });
+                }
+                //this.list = this.list.concat(res.data);
             }
         },
         computed: {},

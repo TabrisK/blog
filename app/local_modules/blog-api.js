@@ -8,7 +8,7 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
 export let article = Vue.resource('/api/article', {}, {
-    getList: { method: 'GET', url: '/api/article/page{/page}/size{/size}' }
+    getList: { method: 'GET', url: '/api/a' }
 });
 
 export let character = Vue.resource(null, {}, {

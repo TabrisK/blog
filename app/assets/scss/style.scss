@@ -1,13 +1,58 @@
-@import "../font-awesome/scss/font-awesome";
-@import "./transition";
+@import "../font/font";
 @import "./variables";
 @import "./device-pc";
+@import "../font-awesome/scss/font-awesome";
+@import "./transition";
 @import "./device-phone";
+@import "./editormd/editormd.preview";
+@import "./md-custom";
 
 html, body {
   margin: 0;
   height: 100%;
-  font-family: "Microsoft YaHei UI, arial";
+  .app {
+    font-size: 0;
+
+    .three-part-layout {
+      .left-block {
+        width: 20%;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 16px;
+      }
+
+      .center-block {
+        width: 65%;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      .right-block {
+        width: 15%;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 16px;
+      }
+    }
+    .two-part-layout {
+      .left-block {
+        width: 75%;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 16px;
+        margin-bottom: 15px;
+      }
+
+      .right-block {
+        width: 25%;
+        display: inline-block;
+        vertical-align: top;
+        font-size: 16px;
+      }
+    }
+  }
 }
 
 .bg {
@@ -15,58 +60,18 @@ html, body {
   bottom: 50px;
   overflow-y: auto;
   background-color: white;
+  padding-bottom: 40px;
   .content {
     max-width: 768px;
     margin: 0px auto;
+    margin-top: 10px;
+    padding: 0px 15px;
   }
 }
 
-form {
-  input {
-    margin: 10px 2px 0px 2px;
-  }
-}
-
-header {
-  width: 100%;
-  z-index: $layout-A;
-  .bg {
-    border-bottom: 1px solid $basic-border-color;
-    .header-bar {
-      max-width: 768px;
-      height: 40px;
-      line-height: 40px;
-      font-weight: 600;
-      margin: 0px auto;
-      font-size: 28px;
-      i {
-        font-size: 18px;
-      }
-      .right {
-        float: right;
-        input {
-          text-align: center;
-        }
-      }
-
-      .topic {
-        width: 100%;
-      }
-
-      .toggle-pop-up {
-        width: 100%;
-
-        i {
-          transition: transform 0.4s,
-          color 0.4s;
-
-          &.pop-up-open {
-            transform: rotate(45deg);
-            color: $highlight;
-          }
-        }
-      }
-    }
+.category {
+  &.notice {
+    color: white;
   }
 }
 
@@ -107,7 +112,92 @@ h1, h2, h3, h4, h5, h6, p, b, section, span, div {
 
 a {
   cursor: pointer;
+  text-decoration: none;
+  color: black;
   &:hover {
+    color: $kawasaki-green;
+    text-decoration: underline;
+  }
+}
 
+.primary-list {
+  .item {
+    a {
+      padding: 15px 5px;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+      display: block;
+      font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-weight: 100;
+
+      &:hover {
+        color: $kawasaki-green;
+        .post-meta{
+          color: black;
+        }
+        .title{
+          text-decoration: underline;
+        }
+      }
+
+      .title {
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .post-meta {
+        font-size: 13px;
+        color: gray;
+        cursor: pointer;
+        span{
+          margin-right: 12px;
+          cursor: pointer;
+          i {
+            padding-right: 4px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
+
+//device width <= iphone6 plus
+@media (max-width: 414px) {
+
+  html, body {
+    .app {
+      font-size: 16px;
+      .three-part-layout {
+        .left-block {
+          display: none;
+        }
+        .right-block {
+          display: none;
+        }
+        .center-block {
+          width: 100%;
+        }
+      }
+
+      .two-part-layout {
+        .left-block {
+          width: 100%;
+        }
+
+        .right-block {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .primary-list {
+
+    .item {
+      a {
+        padding: 15px;
+      }
+    }
   }
 }

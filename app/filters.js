@@ -56,7 +56,31 @@ let monthMap = [
 export default {
     install: function (Vue, options) {
         Vue.filter("date", date);
+        Vue.filter("category", category);
     }
+}
+
+/*function mark(val) {
+    if (!val)
+        return "";
+    let date = new Date(val.releaseTime);
+    let retStr = "Posted by " + val.author + " on " + monthMap[date.getMonth()].EN + " " + date.getDate() + ", " + date.getFullYear();
+    return retStr;
+
+}*/
+
+function category(val) {
+    let retVal;
+    switch (val) {
+        case 1:
+            retVal = "公告";
+            break;
+        default:
+            retVal = "";
+    }
+
+
+    return retVal;
 }
 
 function date(val, pattern) {

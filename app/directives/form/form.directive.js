@@ -37,23 +37,23 @@ let reg = {};
 export default {
     install: function (Vue, options) {
         Vue.directive("form", {
-            bind: function (el, binding, vnode) {
-            },
+            bind: function (el, binding, vnode) {},
             inserted: function (el, binding, vnode) {
-                var vm = vnode.context,//rendered in this component's scope
+                let vm = vnode.context,//rendered in this component's scope
                     formObj = {},//用户表单对象；
                     formNode = vnode.elm;//表单virtual dom
-                for (let node of vnode.elm) {
+                for (let index in vnode.elm.childNodes) {
+                    let node = vnode.elm.childNodes[index];
                     //匹配到需要监控的输入控件
-                    if (node.nodeName == "INPUT") {
+                    if (node.nodeName == "INPUT" || node.nodeName == "TEXTAREA") {
                         updateStatusListerner(node);
-                        node.addEventListener("keyup", (e)=> {
+                        node.addEventListener("keyup", (e) => {
                             updateStatusListerner(node, e)
                         });
 
                     } else if (node.nodeName == "SELECT") {
                         updateStatusListerner(node);
-                        node.addEventListener("change", (e)=> {
+                        node.addEventListener("change", (e) => {
                             updateStatusListerner(node, e)
                         });
                     }
@@ -71,7 +71,6 @@ export default {
                     formObj.$dirty = !!e;
                     setErrorMsg(formObj, msg, !!e);
 
-                    console.log(formObj);
                     vm.$data[binding.expression] = Object.assign({}, vm.$data[binding.expression], formObj);
 
                     function setErrorMsg(err, msg, userOperation) {

@@ -2,21 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="./favicon.ico?v=2.0"/>
     <title>HELEX</title>
 </head>
 <body>
-<div id="app">
-    <header>
-        <header-bar></header-bar>
-    </header>
-    <transition :name="stateTransition">
-        <div class="bg">
-            <router-view class="content"></router-view>
-        </div>
-    </transition>
+<div id="app" class="app">
+    <header-bar></header-bar>
+    <router-view></router-view>
+    <error-message></error-message>
 </div>
 <script src="https://api.map.baidu.com/api?v=2.0&ak=nLcg543nSxxibj5V0dwU02Dl&s=1"></script>
-<script src="bundle.js"></script>
+<script src="/bundle.js?v=___fv___"></script>
 </body>
 </html>

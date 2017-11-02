@@ -4,14 +4,15 @@
 
 var path = require("path");
 var copyWebpackPlugin = require("copy-webpack-plugin");
+var replaceWebpackPlugin = require('./replace-webpack-plugin');
 
 module.exports = {
     entry: ["babel-polyfill", "./app/app.js"],
     devtool: "eval-source-map",
     output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname,"./dist")
-
+        path: path.resolve(__dirname,"./dist"),
+        publicPath: "/"//请求chunk资源时
     },
 
     plugins: [
@@ -20,7 +21,10 @@ module.exports = {
                 from: "app/assets/img",
                 to: "assets/img"
             }
-        ])
+        ]),
+        new replaceWebpackPlugin({
+            template: "app/index.html"
+        })
     ],
     resolve: {
         alias: {
@@ -57,11 +61,16 @@ module.exports = {
             }
             , {//拷贝fonts文件
                 test: /\.(woff|svg|eot|ttf|otf)\??/,
-                loader: 'file-loader?name=assets/font-awesome/fonts/[name].[ext]'
+                loader: 'file-loader?name=assets/fonts/[name].[ext]'
+                //loader: 'file-loader'
             }
             , {//拷贝html文件
                 test: /\.(html)$/,
                 loader: 'file-loader?name=[name].[ext]'
+            }
+            , {//拷贝图片文件文件
+                test: /\.(png|jpg|ico)$/,
+                loader: 'file-loader?name=assets/img/[name].[ext]'
             }
         ]
     }

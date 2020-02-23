@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <link rel="shortcut icon" href="./favicon.ico?v=2.0"/>
-    <title>HELEX</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/favicon.ico" />
+    <title><%= htmlWebpackPlugin.options.title %></title>
 </head>
+
 <body>
-<div id="app" class="app">
-    <header-bar></header-bar>
-    <router-view></router-view>
-    <error-message></error-message>
-</div>
-<script src="https://api.map.baidu.com/api?v=2.0&ak=nLcg543nSxxibj5V0dwU02Dl&s=1"></script>
-<script src="/bundle.js?v=___fv___"></script>
+    <div id="app" class="app">
+        <header-bar></header-bar>
+        <router-view></router-view>
+        <error-message></error-message>
+    </div>
+    <script src="https://api.map.baidu.com/api?v=2.0&ak=nLcg543nSxxibj5V0dwU02Dl&s=1"></script>
 </body>
+
 </html>

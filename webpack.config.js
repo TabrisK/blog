@@ -2,16 +2,18 @@
  * Created by Helex on 2017/1/31.
  */
 
-var path = require("path");
-var copyWebpackPlugin = require("copy-webpack-plugin");
-var replaceWebpackPlugin = require('./replace-webpack-plugin');
+let path = require("path");
+let copyWebpackPlugin = require("copy-webpack-plugin");
+let HtmlWebpackPlugin = require("html-webpack-plugin");
+const VueLoaderPlugin = require("vue-loader/lib/plugin");
 
 module.exports = {
+    mode: "development",
     entry: ["babel-polyfill", "./app/app.js"],
     devtool: "eval-source-map",
     output: {
-        filename: "bundle.js",
-        path: path.resolve(__dirname,"./dist"),
+        filename: "bundle.[chunkhash].js",
+        path: path.resolve(__dirname, "./dist"),
         publicPath: "/"//请求chunk资源时
     },
 
@@ -20,58 +22,68 @@ module.exports = {
             {//拷贝图片
                 from: "app/assets/img",
                 to: "assets/img"
+            }, {
+                from: "app/favicon.ico",
+                to: ""
             }
         ]),
-        new replaceWebpackPlugin({
-            template: "app/index.html"
-        })
+        new HtmlWebpackPlugin({
+            title: 'HELEX',
+            template: './app/index.html', // Load a custom template (lodash by default see the FAQ for details)
+        }),
+        new VueLoaderPlugin()
     ],
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.common.js',
-            'scss': path.resolve(__dirname, './app/assets/scss')
+            'scss': path.resolve(__dirname, './app/assets/scss'),
+            '@app': path.resolve(__dirname, 'app'),
         }
     },
 
     module: {
         rules: [
-            {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+            { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
             {
-                test: /\.vue$/, loader: 'vue-loader',
-                options: {
-                    loaders: {
-                        // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-                        // the "scss" and "sass" values for the lang attribute to the right configs here.
-                        // other preprocessors should work out of the box, no loader config like this necessary.
-                        'scss': 'vue-style-loader!css-loader!sass-loader',
-                        'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
-                    }
-                    // other vue-loader options go here
-                }
+                test: /\.vue$/, loader: 'vue-loader'
             },
             {
                 test: /\.scss$/, use: [
-                {
-                    loader: 'sass-loader',
-                    options: {
-                        sourceMap: true
+                    'vue-style-loader',
+                    'css-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
                     }
-                }
-            ]
+                ]
             }
             , {//拷贝fonts文件
                 test: /\.(woff|svg|eot|ttf|otf)\??/,
-                loader: 'file-loader?name=assets/fonts/[name].[ext]'
-                //loader: 'file-loader'
-            }
-            , {//拷贝html文件
-                test: /\.(html)$/,
-                loader: 'file-loader?name=[name].[ext]'
+                loader: 'file-loader',
+                options: {
+                    esModule: false,
+                }
             }
             , {//拷贝图片文件文件
-                test: /\.(png|jpg|ico)$/,
-                loader: 'file-loader?name=assets/img/[name].[ext]'
+                test: /\.(png|jpe?g|ico)$/i,
+                loader: 'file-loader',
+                options: {
+                    esModule: false,
+                }
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true,
+        proxy: {
+            '/api': {
+                target: "https://helex.site",
+                secure: false,
+                changeOrigin: true
+
+            }
+        }
     }
 };

@@ -5,10 +5,18 @@
 import marked from "marked";
 
 let defaultOpts = {
-        github_md_css: false
-    }
+    github_md_css: false
+}
     , opts = {}
     , renderer = new marked.Renderer();
+
+const orgCode = renderer.code;
+renderer.code = function (code, infostring, escaped) {
+    if (infostring === "iframe") {
+        return `<iframe width="100%" height="200" src="${code}"></iframe>`
+    }
+    return orgCode.apply(this, arguments);
+}
 
 
 export default {

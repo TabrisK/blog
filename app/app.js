@@ -19,6 +19,8 @@ import Views from './components/view/views';
 import Filters from './filters';
 import Interceptor from './local_modules/http-interceptor';
 
+window.AV = require("leancloud-storage");
+
 console.info(process.env.NODE_ENV);
 
 Vue.use(VueRouter);

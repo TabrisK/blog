@@ -77,9 +77,11 @@ module.exports = {
     },
     devServer: {
         historyApiFallback: true,
+        port: 3000,
         proxy: {
             '/api': {
-                target: "https://helex.site",
+                target: "http://localhost:8080",
+                // target: "https://helex.site",
                 secure: false,
                 changeOrigin: true
 

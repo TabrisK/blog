@@ -3,7 +3,7 @@
  */
 
 export default {
-    install: function(Vue, options){
+    install: function (Vue, options) {
         Vue.component(
             'baidu-map',
             () => System.import('./baidu-map.component.vue')

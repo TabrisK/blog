@@ -28,7 +28,7 @@
 
       <div v-show="article" class="a-content" v-md.github_md_css="article"></div>
       <div v-show="!article" style="padding-bottom: 10px;text-align: center;">
-        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        <skeleton />
       </div>
     </section>
     <div id="vcomments"></div>

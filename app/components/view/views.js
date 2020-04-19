@@ -50,6 +50,14 @@ export default {
             'right-panel',
             () => System.import('./right-panel.component.vue')
         );
+        Vue.component(
+            'loading',
+            () => System.import('./loading.component.vue')
+        );
+        Vue.component(
+            'skeleton',
+            () => System.import('./skeleton.component.vue')
+        );
 
     }
 }

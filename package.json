@@ -8,7 +8,7 @@
     "github-markdown-css": "^2.8.0",
     "leancloud-storage": "^4.5.3",
     "lodash": "^4.17.4",
-    "marked": "^0.3.6",
+    "marked": "^4.0.10",
     "valine": "^1.4.4",
     "vue": "^2.6.11",
     "vue-resource": "^1.1.2",
